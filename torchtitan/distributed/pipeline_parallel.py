@@ -18,9 +18,14 @@ from torch.distributed.pipelining.schedules import (
     get_schedule_class,
     PipelineScheduleMulti,
     PipelineScheduleSingle,
-    ScheduleDualPipeV,
-    ScheduleZBVZeroBubble,
 )
+try:
+    from torch.distributed.pipelining.schedules import (
+        ScheduleDualPipeV,
+        ScheduleZBVZeroBubble,
+    )
+except ImportError:
+    print("Warning: ScheduleDualPipeV and ScheduleZBVZeroBubble not found, disabling them.")
 
 from torchtitan.config import JobConfig
 from torchtitan.tools.logging import logger
